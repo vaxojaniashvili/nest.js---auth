@@ -10,7 +10,7 @@ export class AuthService {
   constructor(@InjectModel(User.name) private usersModule: Model<User>) {}
   async create(createAuthDto: CreateAuthDto) {
     const user = await this.usersModule.create(createAuthDto);
-    const savedUser = user.save();
+    const savedUser = user.save();c
     if (!savedUser) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
