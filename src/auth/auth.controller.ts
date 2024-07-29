@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 
-@Controller('auth')
+@Controller('users')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -32,7 +32,7 @@ export class AuthController {
 
   @Patch('/update/:id')
   update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
+    return this.authService.update(id, updateAuthDto);
   }
 
   @Delete('/delete/:id')

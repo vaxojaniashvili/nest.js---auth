@@ -10,7 +10,7 @@ export class AuthService {
   constructor(@InjectModel(User.name) private usersModule: Model<User>) {}
   async create(createAuthDto: CreateAuthDto) {
     const user = await this.usersModule.create(createAuthDto);
-    const savedUser = user.save();c
+    const savedUser = user.save();
     if (!savedUser) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
     }
@@ -29,9 +29,9 @@ export class AuthService {
     return user;
   }
 
-  async update(id: number, updateAuthDto: UpdateAuthDto) {
+  async update(id: string, updateAuthDto: UpdateAuthDto) {
     const user = await this.usersModule
-      .findByIdAndUpdate({ _id: id }, UpdateAuthDto, { new: true })
+      .findByIdAndUpdate(id, updateAuthDto, { new: true })
       .exec();
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
